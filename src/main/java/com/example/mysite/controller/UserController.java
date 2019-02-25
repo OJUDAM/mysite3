@@ -62,6 +62,9 @@ public class UserController {
 		userVo.setNo( authUser.getNo() );
 		userService.modifyUser( userVo );
 		
+		// session의 authUser 변경
+		authUser.setName(userVo.getName());
+		
 		return "redirect:/user/modify?result=success";
 	}
 }

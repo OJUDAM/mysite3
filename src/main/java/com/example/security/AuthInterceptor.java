@@ -30,8 +30,13 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		//3. Method에 @Auth 받아오기
 		Auth auth = handlerMethod.getMethodAnnotation( Auth.class );
 		
+		//3-1. Method에 @Auth가 안 붙어 있으면 class(type)의 @Auth 받아오기
+		if( auth == null ) {
+			auth = handlerMethod.getMethod().getDeclaringClass().getAnnotation( Auth.class );
+		}
+		
 		//4. Method에 @Auth가 안 붙어 있으면
-		if(auth == null) {
+		if( auth == null ) {
 			return true;
 		}
 		
@@ -43,6 +48,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect(request.getContextPath()+ "/user/login");
 			return false;
 		}
+
+		//5.1 Role 비교 작업
+		Role role = auth.value();
+		
+		
 		
 		//6. 접근 허용
 		return true;
