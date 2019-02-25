@@ -15,6 +15,22 @@
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler />
 
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		
+		<!-- MyInterceptor01 -->
+		<!--mvc:interceptor>
+			<mvc:mapping path="/guestbook/**"/>
+			<bean class="com.example.mysite.interceptor.MyInterceptor02"/>
+		</mvc:interceptor-->
+		<mvc:interceptor>
+			<mvc:mapping path="/user/auth"/>
+			<bean class="com.example.security.AuthLoginInterceptor"/>
+		</mvc:interceptor>
+		
+		
+	</mvc:interceptors>
+	
 	<!-- 뷰 리졸버 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -35,21 +35,6 @@ public class UserController {
 	public String login() {
 		return "user/login";
 	}
-
-	@RequestMapping( value="/login", method=RequestMethod.POST )
-	public String login(
-		HttpSession session,
-		@RequestParam(value="email", required=true, defaultValue="") String email,
-		@RequestParam(value="password", required=true, defaultValue="") String password) {
-		
-		UserVo authUser = userService.getUser(email, password);
-		if(authUser == null) {
-			return "redirect:/user/login?result=fail";
-		}
-		
-		session.setAttribute("authUser", authUser);
-		return "redirect:/";
-	}
 	
 	@RequestMapping( value="/logout" )
 	public String logout( HttpSession session ) {
