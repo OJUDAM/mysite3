@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mysite.service.UserService;
 import com.example.mysite.vo.UserVo;
@@ -35,20 +34,13 @@ public class UserController {
 	public String login() {
 		return "user/login";
 	}
-	
-	@RequestMapping( value="/logout" )
-	public String logout( HttpSession session ) {
-		session.removeAttribute("authUser");
-		session.invalidate();
-		
-		return "redirect:/";
-	}	
 
 	@RequestMapping( "/joinsuccess" )
 	public String joinsuccess(){
 		return "user/joinsuccess";
 	}
 	
+
 	@RequestMapping( value="/modify", method=RequestMethod.GET )
 	public String modify(HttpSession session, Model model ){
 		/* 접근제어 */
@@ -63,7 +55,9 @@ public class UserController {
 	}
 	
 	@RequestMapping( value="/modify", method=RequestMethod.POST )
-	public String modify( HttpSession session, @ModelAttribute UserVo userVo ){
+	public String modify( 
+		HttpSession session, 
+		@ModelAttribute UserVo userVo ){
 		UserVo authUser = (UserVo)session.getAttribute("AuthUser");
 		if(authUser == null) {
 			return "rediurect:/";
