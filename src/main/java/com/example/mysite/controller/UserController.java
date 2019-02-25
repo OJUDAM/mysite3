@@ -1,7 +1,5 @@
 package com.example.mysite.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.mysite.service.UserService;
 import com.example.mysite.vo.UserVo;
+import com.example.security.Auth;
+import com.example.security.AuthUser;
 
 @Controller
 @RequestMapping( "/user" )
@@ -40,29 +40,25 @@ public class UserController {
 		return "user/joinsuccess";
 	}
 	
-
+	@Auth
 	@RequestMapping( value="/modify", method=RequestMethod.GET )
-	public String modify(HttpSession session, Model model ){
-		/* 접근제어 */
-		UserVo authUser = (UserVo)session.getAttribute("AuthUser");
-		if(authUser == null) {
-			return "rediurect:/";
-		}
-				
+	public String modify( @AuthUser UserVo authUser, Model model ){
+		System.out.println( authUser );
+		
 		UserVo userVo = userService.getUser( authUser.getNo() );
 		model.addAttribute( "userVo", userVo );
 		return "user/modify";
 	}
 	
+	@Auth
 	@RequestMapping( value="/modify", method=RequestMethod.POST )
 	public String modify( 
-		HttpSession session, 
+		@AuthUser UserVo authUser, 
 		@ModelAttribute UserVo userVo ){
-		UserVo authUser = (UserVo)session.getAttribute("AuthUser");
-		if(authUser == null) {
-			return "rediurect:/";
-		}
-
+		
+		System.out.println(authUser);
+		System.out.println(userVo);
+		
 		userVo.setNo( authUser.getNo() );
 		userService.modifyUser( userVo );
 		

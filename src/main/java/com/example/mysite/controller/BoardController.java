@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.mysite.service.BoardService;
 import com.example.mysite.vo.BoardVo;
 import com.example.mysite.vo.UserVo;
+import com.example.security.Auth;
 import com.example.web.util.WebUtil;
 
 @Controller
@@ -100,13 +101,9 @@ public class BoardController {
 				"&kwd=" + WebUtil.encodeURL( keyword, "UTF-8" );
 	}
 	
+	@Auth
 	@RequestMapping( value="/write", method=RequestMethod.GET )	
-	public String write(HttpSession session) {
-		/* 접근제어 */
-		if(null == session.getAttribute("authUser")) {
-			return "redirect:/";
-		}
-		
+	public String write() {
 		return "board/write";
 	}
 

@@ -35,14 +35,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 		
-		//Role role = auth.value();
-		
 		//5. @Auth 붙어 있기 때문에 로그인 여부(인증여부)를 확인해야 한다.
 		HttpSession session = request.getSession();
-		UserVo authUser = null;
-		if(session != null) {
-			authUser = (UserVo)session.getAttribute("authUser");
-		}
+		UserVo authUser = (session == null) ? null : (UserVo)session.getAttribute("authUser");
 		
 		if(authUser == null) {
 			response.sendRedirect(request.getContextPath()+ "/user/login");
