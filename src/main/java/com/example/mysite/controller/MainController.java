@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.mysite.service.SiteService;
+import com.example.mysite.vo.SiteVo;
 
 @Controller
 public class MainController {
@@ -16,14 +17,8 @@ public class MainController {
 	
 	@RequestMapping( { "/", "/main" } )
 	public String index( Model model ) {
-		//SiteVo siteVo = siteService.getSite();
-		//model.addAttribute("site", siteVo);
+		// SiteVo siteVo = siteService.getSiteInformation();
+		// model.addAttribute("site", siteVo);
 		return "main/index";
-	}
-	
-	@ResponseBody
-	@RequestMapping( "/hello" )
-	public String hello() {
-		return "<h1>안녕하세요.</h1>";
 	}
 }

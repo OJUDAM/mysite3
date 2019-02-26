@@ -8,7 +8,7 @@ import com.example.mysite.service.SiteService;
 import com.example.security.Auth;
 import com.example.security.Auth.Role;
 
-//@Auth(Role.ADMIN)
+@Auth(Role.ADMIN)
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
