@@ -8,7 +8,9 @@
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-
+	<!--  auto proxy -->
+	<aop:aspectj-autoproxy />
+	
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
 	<mvc:annotation-driven>
 		<!-- Controller의 Handler의 Argument Resolver 등록 -->

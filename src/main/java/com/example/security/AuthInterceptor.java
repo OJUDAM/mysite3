@@ -16,8 +16,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(
 		HttpServletRequest request,
 		HttpServletResponse response,
-		Object handler)
-			throws Exception {
+		Object handler) throws Exception {
 		
 		//1. Handler 종류 확인
 		if(handler instanceof HandlerMethod == false) {
@@ -35,12 +34,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			auth = handlerMethod.getMethod().getDeclaringClass().getAnnotation( Auth.class );
 		}
 		
-		//5. Method에 @Auth가 안 붙어 있으면
+		//5. Method 와 class 에 @Auth가 안 붙어 있으면
 		if( auth == null ) {
 			return true;
 		}
 		
-		//6. @Auth 붙어 있기 때문에 로그인 여부(인증여부)를 확인해야 한다.
+		//6. @Auth 붙어 있기 때문에 로그인 여부(인증여부, Authorization)를 확인해야 한다.
 		HttpSession session = request.getSession();
 		UserVo authUser = (session == null) ? null : (UserVo)session.getAttribute("authUser");
 		
@@ -49,10 +48,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			return false;
 		}
 
-		//7. Role 가져오기
+		//7. Role 가져오기(권한, Authentication)
 		Role role = auth.value();
 		
-		//8. User Role 접근이면 이증만 되어 있으면 허용
+		//8. User Role 접근이면 인증만 되어 있으면 허용
 		if(role == Role.USER) {
 			return true;
 		}

@@ -40,7 +40,7 @@ public class UserController {
 		return "user/joinsuccess";
 	}
 	
-	@Auth
+	@Auth(Auth.Role.USER)
 	@RequestMapping( value="/modify", method=RequestMethod.GET )
 	public String modify( @AuthUser UserVo authUser, Model model ){
 		System.out.println( authUser );
@@ -55,9 +55,6 @@ public class UserController {
 	public String modify( 
 		@AuthUser UserVo authUser, 
 		@ModelAttribute UserVo userVo ){
-		
-		System.out.println(authUser);
-		System.out.println(userVo);
 		
 		userVo.setNo( authUser.getNo() );
 		userService.modifyUser( userVo );
