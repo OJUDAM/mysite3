@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.mysite.service.FileuploadService;
+import com.example.mysite.service.FileUploadService;
 import com.example.mysite.service.SiteService;
 import com.example.mysite.vo.SiteVo;
 import com.example.security.Auth;
@@ -20,7 +20,7 @@ import com.example.security.Auth.Role;
 public class AdminController {
 
 	@Autowired
-	private FileuploadService fileuploadService;
+	private FileUploadService fileuploadService;
 
 	@Autowired
 	private SiteService siteService;

@@ -5,7 +5,7 @@
 		<![CDATA[
 		insert
 		  into user
-		values (null, #{name }, #{email }, password(#{password }), #{gender }, 'USER')		
+		values (null, #{name }, #{email }, #{password }, #{gender }, 'USER')		
 		]]>	
 	</insert>
 	
@@ -14,7 +14,7 @@
 		select no, name, role 
 		  from user 
 		 where email=#{email }
-		   and password = password(#{password })
+		   and password = #{password }
 		]]>
 	</select>
 
@@ -41,7 +41,7 @@
 		]]>
 		<if test="password != ''">
 			<![CDATA[   
-		       password=password(#{password }),
+		       password=#{password },
 			]]>       
 		</if>
 		<![CDATA[

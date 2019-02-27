@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.example.mysite.dto;
 
 public class JSONResult {
 	private String result;  // "success", "fail"

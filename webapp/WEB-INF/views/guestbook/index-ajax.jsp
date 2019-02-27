@@ -98,7 +98,7 @@ var fetchList = function(){
 	
 	var startNo = $( "#list-guestbook li" ).last().data( "no" ) || 0;
 	$.ajax( {
-		url : "http://www.kickscar.com:8080${pageContext.request.contextPath }/guestbook/api/list?sno=" + startNo,
+		url : "${pageContext.request.contextPath }/guestbook/api/list?sno=" + startNo,
 		type: "get",
 		dataType: "json",
 		data: "",

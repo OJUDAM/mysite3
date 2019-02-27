@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.dto.JSONResult;
+import com.example.mysite.dto.JSONResult;
 import com.example.mysite.service.SiteService;
 import com.example.mysite.vo.UserVo;
 

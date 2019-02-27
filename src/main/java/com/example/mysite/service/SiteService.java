@@ -8,6 +8,7 @@ import com.example.mysite.vo.SiteVo;
 
 @Service
 public class SiteService {
+	
 	@Autowired
 	private SiteDao siteDao;
 	
@@ -16,6 +17,6 @@ public class SiteService {
 	}
 	
 	public boolean updateSiteInformation( SiteVo siteVo ) {
-		return siteDao.update(siteVo) == 1;
+		return siteDao.update( siteVo ) == 1;
 	}
 }
