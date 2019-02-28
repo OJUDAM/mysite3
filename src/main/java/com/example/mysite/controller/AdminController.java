@@ -27,12 +27,12 @@ public class AdminController {
 	
 	@RequestMapping({"", "/main"})
 	public String main(Model model) {
-		// SiteVo siteVo = siteService.getSiteInformation();
-		// model.addAttribute("siteVo", siteVo);
+		SiteVo siteVo = siteService.getSiteInformation();
+		model.addAttribute("siteVo", siteVo);
 		return "admin/main";
 	}
 
-	@RequestMapping("/main/updata")
+	@RequestMapping("/main/update")
 	public String updateSite(
 		@ModelAttribute SiteVo siteVo,
 		@RequestParam(value="upload-profile") MultipartFile multipartFile) {

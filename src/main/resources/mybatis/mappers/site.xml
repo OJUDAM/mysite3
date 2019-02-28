@@ -7,19 +7,19 @@
 		select title,
 			   welcome,
 			   profile, 	
-			   desc
+			   description
 		  from site;	   		
 		]]>
 	</select>
 	
 	<update id="update" parameterType="sitevo">
 		<choose>
-			<when test="profileURL == null">
+			<when test="profile == null">
 				<![CDATA[
 				update site
 				   set title = #{title },
 				   	   welcome = #{welcome },
-				   	   desc = #{desc }
+				   	   description = #{description }
 				]]>	
 			</when>
 			<otherwise>
@@ -28,7 +28,7 @@
 				   set title = #{title },
 				   	   welcome = #{welcome },
 				   	   profile = #{profile },
-				   	   desc = #{desc }
+				   	   description = #{description }
 				]]>	
 			</otherwise>
 		</choose>	

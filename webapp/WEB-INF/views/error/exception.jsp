@@ -15,10 +15,11 @@
 		서비스 사용 중 장애가 발생했습니다.<br>
 		===========================<br>
 	</p>
+	<!--
 	<pre style="color:red; font-weight:bold">	
-${exception }
+		${exception }
 	</pre>
-
+	-->
 	
 </body>
 </html>

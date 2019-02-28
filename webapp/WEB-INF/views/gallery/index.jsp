@@ -19,7 +19,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <c:if test="${not empty authUser && authUser.role=='ADMIN' }">
 	<script type="text/javascript">
 	$(function(){
@@ -63,97 +62,18 @@
 					</c:if>
 				</div>
 				<ul>
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im2.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im2.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im3.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im3.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>					
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im4.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im4.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>					
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im5.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im5.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>					
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im6.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im6.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>					
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im7.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im7.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>					
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im8.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im8.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>					
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im9.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im9.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>					
-					<li>
-						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im10.jpg"
-							data-lightbox="gallery"
-							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im10.jpg')">&nbsp;</a>
-						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-							<a	href="/gallery/delete/10" class="del-button" title="삭제">삭제</a>
-						</c:if>
-					</li>					
-
+					<c:forEach items="${list }" var="vo">
+						<li>
+							<a	href="${pageContext.request.contextPath }${vo.imageURL }"
+								data-lightbox="gallery"
+								class="image"
+								style="background-image:url('${pageContext.request.contextPath }${vo.imageURL }')">&nbsp;</a>
+							<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
+								<a	href="${pageContext.request.contextPath }/gallery/delete/${vo.no }"
+									class="del-button" title="삭제">삭제</a>
+							</c:if>
+						</li>
+					</c:forEach>
 				</ul>
 			</div>
 
@@ -162,7 +82,7 @@
 					<p class="validateTips normal">이미지와 간단한 코멘트를 입력해 주세요.</p>
 					<form action="${pageContext.request.contextPath }/gallery/upload" method="post" enctype="multipart/form-data">
 						<label>코멘트</label> <input type="text" id="input-comments" name="comment" value="">
-						<label>이미지</label> <input type="file" id="input-file" name="upload-image"> 
+						<label>이미지</label> <input type="file" id="input-file" name="file"> 
 						<input type="submit" tabindex="-1" style="position: absolute; top: -1000px">
 					</form>
 				</div>

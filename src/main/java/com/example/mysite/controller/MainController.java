@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.mysite.dto.JSONResult;
 import com.example.mysite.service.SiteService;
+import com.example.mysite.vo.SiteVo;
 import com.example.mysite.vo.UserVo;
 
 @Controller
@@ -18,8 +19,8 @@ public class MainController {
 	
 	@RequestMapping( { "/", "/main" } )
 	public String index( Model model ) {
-		// SiteVo siteVo = siteService.getSiteInformation();
-		// model.addAttribute("site", siteVo);
+		SiteVo siteVo = siteService.getSiteInformation();
+		model.addAttribute("site", siteVo);
 		return "main/index";
 	}
 	
