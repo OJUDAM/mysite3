@@ -156,13 +156,14 @@ $(function(){
 					
 					<fieldset>
 						<legend>성별</legend>
-						<label>여</label> <input type="radio" name="gender" value="female" checked="checked">
-						<label>남</label> <input type="radio" name="gender" value="male">
+						<label>여</label> <form:radiobutton path="gender" value="female" checked="checked"/>
+						<label>남</label> <form:radiobutton path="gender" value="male"/>
 					</fieldset>
 					
 					<fieldset>
 						<legend>약관동의</legend>
-						<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
+						<!--form:checkbox path="agreeProv" value="y" /-->
+						<input type='checkbox' id='agree-prov' name="agreeProv" value="y" />
 						<label>서비스 약관에 동의합니다.</label>
 					</fieldset>
 					
