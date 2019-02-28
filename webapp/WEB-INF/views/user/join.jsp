@@ -111,7 +111,7 @@ var FormValidator = {
 }
 
 $(function(){
-	FormValidator.init();
+	//FormValidator.init();
 });
 </script>
 </head>
@@ -122,10 +122,23 @@ $(function(){
 			<div id="user">
 				<form id="join-form" name="joinForm" method="post" action="${pageContext.servletContext.contextPath }/user/join">
 					<label class="block-label" for="name">이름</label>
-					<input id="name" name="name" type="text" value="">
-
+					<input id="name" name="name" type="text" value="${userVo.name }">
+					<spring:hasBindErrors name="userVo">
+   						<c:if test="${errors.hasFieldErrors('name') }">
+   							<p style="padding: 5px 0 0 0; text-align:left; color:red">
+        						<strong>
+        							<spring:message 
+        								code="${errors.getFieldError( 'name' ).codes[0] }"
+        								text="${errors.getFieldError( 'name' ).defaultMessage }" />
+        						</strong>
+        					</p>
+   						</c:if>
+					</spring:hasBindErrors>
+					
 					<label class="block-label" for="email">이메일</label>
-					<input id="email" name="email" type="text" value="">
+					<input id="email" name="email" type="text" value="${userVo.email }">
+					
+					
 					<img id="img-checkemail" style="width:25px; display:none" src="${pageContext.servletContext.contextPath }/assets/images/check.png"/>
 					<input id="btn-checkemail" type="button" value="이메일확인">
 					
