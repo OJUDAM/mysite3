@@ -55,14 +55,17 @@
 	</servlet-mapping>
 
 	<!-- 공통 에러 페이지 -->
+	<!-- 서비스 릴리즈할 때 반영 -->
+	<!--
 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/views/error/404.jsp</location>
 	</error-page>
-
+	
 	<error-page>
 		<error-code>500</error-code>
 		<location>/WEB-INF/views/error/500.jsp</location>
 	</error-page>
-
+	-->
+	
 </web-app>

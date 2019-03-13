@@ -23,7 +23,8 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping( value="/join", method=RequestMethod.GET )
-	public String join(@ModelAttribute UserVo userVo){
+	public String join(/*@ModelAttribute UserVo userVo*/ Model model){
+		model.addAttribute("userVo", new UserVo());
 		return "user/join";
 	}
 	
