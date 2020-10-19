@@ -62,7 +62,7 @@
 				<div class="pager">
 					<ul>
 						<c:if test="${map.prevPage > 0 }" >
-							<li><a href="${map.pageContext.request.contextPath }/board?p=${map.prevPage }&kwd=${map.keyword }">◀</a></li>
+							<li><a href="${pageContext.request.contextPath }/board?p=${map.prevPage }&kwd=${map.keyword }">◀</a></li>
 						</c:if>
 						
 						<c:forEach begin="${map.beginPage }" end="${map.beginPage + map.listSize - 1 }" var="page">
